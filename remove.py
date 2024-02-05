@@ -4,11 +4,10 @@ def remove():
     system_type = os.uname().sysname.lower()
 
     if system_type == 'linux':
-        os.system('rm -rf /usr/bin/pyshell.py')
-        os.system('rm -rf /usr/bin/colors.py')
+        os.system('rm -rf /bin/pyshell')
+
     elif system_type == 'termux':
-        os.system('rm -rf /data/data/com.termux/files/usr/bin/pyshell.py')
-        os.system('rm -rf /data/data/com.termux/files/usr/bin/colors.py')
+        os.system('rm -rf /data/data/com.termux/files/usr/bin/pyshell')
     else:
         print(f"Unsupported system: {system_type}")
         return
