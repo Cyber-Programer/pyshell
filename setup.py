@@ -6,23 +6,14 @@ from pathlib import Path
 # system_username = subprocess.getoutput(['whoami'])
 
 def install():
-    x = os.uname().sysname.lower()
+    system_type = os.environ
 
     os.system('mv pyshell.py pyshell')  # Use os.rename for renaming files
     os.system('chmod +x pyshell')
     
-    if x == 'linux':
-        print('Setup for Linux!')
-        try:
-            if os.geteuid() != 0:
-                print("Please run with sudo!")
-                return
-            os.system('cp pyshell /bin')  # Move to /bin with sudo
-        
-        except Exception as e:
-            print(e)
+    
             
-    elif x == 'termux':
+    if 'termux' in system_type:
         print("Setup for Termux")
         
         # if os.geteuid() != 0:
@@ -31,6 +22,17 @@ def install():
 
         try:
             shutil.copy('pyshell', '/data/data/com.termux/files/usr/bin')  # Move to Termux bin directory
+        except Exception as e:
+            print(e)
+
+    else:
+        print('Setup for Linux!')
+        try:
+            if os.geteuid() != 0:
+                print("Please run with sudo!")
+                return
+            os.system('cp pyshell /bin')  # Move to /bin with sudo
+        
         except Exception as e:
             print(e)
 
