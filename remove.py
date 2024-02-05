@@ -4,7 +4,8 @@ def remove():
     system_type = os.environ
 
 
-    if 'termux' in system_type:
+    if os.path.exists('/data/data/com.termux/files/usr/bin'):
+
         os.system('rm -rf /data/data/com.termux/files/usr/bin/pyshell')
     
     else:

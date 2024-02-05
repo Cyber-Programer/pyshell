@@ -6,14 +6,13 @@ from pathlib import Path
 # system_username = subprocess.getoutput(['whoami'])
 
 def install():
-    system_type = os.environ
-
+    
     os.system('mv pyshell.py pyshell')  # Use os.rename for renaming files
     os.system('chmod +x pyshell')
     
     
             
-    if 'termux' in system_type:
+    if os.path.exists('/data/data/com.termux/files/usr/bin'):
         print("Setup for Termux")
         
         # if os.geteuid() != 0:
