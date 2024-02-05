@@ -30,7 +30,8 @@ def mainShell():
             except FileNotFoundError:
                 print(color.red+f"Directory not found: {new_directory}"+color.reset)
         else:
-            os.system(usr+'|lolcat') 
+            os.system(usr)
+            print() 
 
 if __name__ == '__main__':
     mainShell()
