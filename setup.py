@@ -15,8 +15,8 @@ def ck_lolcat_installation():
 
 def install():
     os.system('chmod +x pyshell.py')  # Assuming it's pyshell.py, not pyshell.py
-    os.system(' cp pyshell.py ../../bin/')
-    os.system(' cp colors.py ../../bin/')
+    os.system(' cp pyshell.py ../../usr/bin/')
+    os.system(' cp colors.py ../../usr/bin/')
     print()
     print()
     print()
