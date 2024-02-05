@@ -1,29 +1,40 @@
 import subprocess
 import os
+import shutil
 
 def ck_lolcat_installation():
     try:
-        output = subprocess.check_output(['lolcat','--version'])
+        output = subprocess.check_output(['lolcat', '--version'])
         return True
     except FileNotFoundError:
-        print()
         print('[ Need to install ] Lolcat')
-        print()
         return False
     except subprocess.CalledProcessError:
         return False
 
 def install():
-    os.system('chmod +x pyshell.py')  # Assuming it's pyshell.py, not pyshell.py
-    os.system(' cp pyshell.py ../../usr/bin/')
-    os.system(' cp colors.py ../../usr/bin/')
-    print()
-    print()
-    print()
-    print('Just type ./pyshell.py to start your terminal')
-    print()
-    print()
-    
+    print('Which is your system?\n[1] Termux\n[2] Linux')
+    x = int(input('=>'))
+
+    os.system('chmod +x pyshell.py')
+
+    if x == 1:
+        print('Setup for Termux!')
+        try:
+            shutil.copy('pyshell.py', '/data/data/com.termux/files/usr/bin/')
+            shutil.copy('colors.py', '/data/data/com.termux/files/usr/bin/')
+        except Exception as e:
+            print(e)
+    elif x == 2:
+        print("Setup for Linux (run with sudo user)")
+        print()
+        try:
+            shutil.copy('pyshell.py', '/usr/bin/')
+            shutil.copy('colors.py', '/usr/bin/')
+        except Exception as e:
+            print(e)
+
+    print('\nJust type ./pyshell.py to start your terminal\n')
 
 if ck_lolcat_installation():
     print('[ok] lolcat')
