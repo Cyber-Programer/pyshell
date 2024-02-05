@@ -13,19 +13,18 @@ def ck_lolcat_installation():
         return False
 
 def install():
-    print('Which is your system?\n[1] Termux\n[2] Linux')
-    x = int(input('=>'))
+    x = os.uname().sysname.lower()
 
     os.system('chmod +x pyshell.py')
 
-    if x == 1:
+    if x == 'termux':
         print('Setup for Termux!')
         try:
             shutil.copy('pyshell.py', '/data/data/com.termux/files/usr/bin/')
             shutil.copy('colors.py', '/data/data/com.termux/files/usr/bin/')
         except Exception as e:
             print(e)
-    elif x == 2:
+    elif x == 'linux':
         print("Setup for Linux (run with sudo user)")
         print()
         try:
