@@ -4,6 +4,9 @@ def remove():
     system_type = os.uname().sysname.lower()
 
     if system_type == 'linux':
+        if os.geteuid() != 0:
+                print("Please run with sudo!")
+                return
         os.system('rm -rf /bin/pyshell')
 
     elif system_type == 'termux':
